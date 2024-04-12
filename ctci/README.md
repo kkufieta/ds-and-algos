@@ -164,7 +164,7 @@
 6. Entity-Relationship Diagram (Python, Golang)
 7. Design Grade Database (Python, Golang)
 
-### Threads & Locks (Python, Golang)
+### Threads & Locks
 1. Threads vs. Process (Python, Golang)
 2. Context Switch (Python, Golang)
 3. Dining Philosophers (Python, Golang)
