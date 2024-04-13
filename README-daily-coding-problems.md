@@ -3,7 +3,7 @@
 ## Data Structures
 
 ### Arrays
-1. Get product of all other elements ([Python](./python/arrays/product-of-all-other-elements.py), [Golang](./go/arrays/product-of-all-other-elements.go))
+1. Get product of all other elements ([Python](./python/daily-coding-problems/arrays/product-of-all-other-elements.py), [Golang](./go/daily-coding-problems/arrays/product-of-all-other-elements.go))
 2. Locate smallest window to be sorted (Python, Golang)
 3. Calculate maximum subarray sum (Python, Golang)
 4. Find number of smaller elements to the right (Python, Golang)
