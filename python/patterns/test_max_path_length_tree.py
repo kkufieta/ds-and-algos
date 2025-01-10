@@ -24,3 +24,4 @@ def test_max_path_length_tree(bt_list, max_path_length):
     bt = tree.BinaryTree()
     bt.create_from_list(bt_list)
     assert mplt.get_max_path_length_recursive(bt.root) == max_path_length
+    assert mplt.get_max_path_length_sequential(bt.root) == max_path_length
