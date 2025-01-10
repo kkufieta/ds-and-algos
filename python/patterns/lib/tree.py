@@ -20,9 +20,7 @@ class BinaryTree:
         i = 0
         self.root = BinaryTreeNode(bt_list[i])
         q.put(self.root)
-        print(i, q.queue)
         while i < len(bt_list):
-            print(i, q.queue)
             if q.qsize() == 0:
                 return
             node = q.get()
