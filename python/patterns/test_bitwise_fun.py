@@ -1,5 +1,5 @@
 import pytest
-from find_difference_bitwise import *
+from bitwise_fun import *
 
 @pytest.mark.parametrize("str1, str2, index", [
     ("wxyz", "zwxgy", 3),
