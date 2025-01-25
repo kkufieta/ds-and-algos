@@ -4,3 +4,4 @@
 * Modified binary search ([Python](./python/patterns/modified_binary_search.py), Golang)
 * Max path length in binary tree (Python, Golang)
 * Matrix algos (Python, Golang)
+* Two heaps (Python, Golang)
