@@ -5,3 +5,4 @@
 * Max path length in binary tree (Python, Golang)
 * Matrix algos (Python, Golang)
 * Two heaps (Python, Golang)
+* Graphs (Python, Golang)
