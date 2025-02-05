@@ -8,3 +8,4 @@
 * Two heaps (Python, Golang)
 * Greedy algos (Python, Golang)
 * Graphs (Python, Golang)
+* K-way merge (Python, Golang)
