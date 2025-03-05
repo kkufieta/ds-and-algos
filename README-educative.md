@@ -10,3 +10,4 @@
 * Graphs (Python, Golang)
 * K-way merge (Python, Golang)
 * Backtracking (Python, Golang)
+* Tries (Python, Golang)
