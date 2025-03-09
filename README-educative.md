@@ -11,3 +11,4 @@
 * K-way merge (Python, Golang)
 * Backtracking (Python, Golang)
 * Tries (Python, Golang)
+* Topological Sort (Python, Golang)
