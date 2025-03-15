@@ -12,3 +12,4 @@
 * Backtracking (Python, Golang)
 * Tries (Python, Golang)
 * Topological Sort (Python, Golang)
+* Dynamic Programming (Python, Golang)
