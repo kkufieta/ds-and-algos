@@ -29,3 +29,7 @@ def redundant_connection(edges):
             uf.union(a, b)
 
     return redundant_edge
+
+def last_day_to_cross(rows, cols, water_cells):
+    last_day = 0
+    return last_day
