@@ -1,6 +1,37 @@
 import pytest
 from two_pointers import *
 
+
+@pytest.mark.parametrize("nums, sum_num, expected", [
+    ([1, 2], 3, (0, 1)),
+    ([1], 2, None),
+    ([], 10, None),
+    ([2, 2, 2], 4, (0, 2)),
+    ([1, 3, 5, 7], 8, (0, 3)),  # Pair exists at the ends
+    ([1, 3, 5, 7], 10, (1, 3)),  # Pair exists in the middle
+    ([1, 3, 5, 7], 12, (2, 3)),  # Pair exists at the end of the array
+    ([1, 2, 3, 4, 5], 9, (3, 4)),  # Pair exists at the end
+    ([1, 2, 3, 4, 5], 1, None),  # Sum is less than the smallest element
+    ([1, 2, 3, 4, 5], 10, None),  # Sum is greater than the largest possible pair
+    ([0, 0, 0, 0], 0, (0, 3)),  # Multiple zeros
+    ([-1, 0, 1, 2], 1, (0, 3)),  # Negative and positive numbers
+    ([-5, -3, -1, 0, 2, 4], -4, (1, 2)),  # Negative numbers
+    ([1, 1, 1, 1], 2, (0, 3)),  # Repeated elements
+    ([1, 2, 3, 4, 4, 5], 8, (2, 5)),  # Duplicate numbers with valid pair
+    ([1, 2, 3, 4, 5], 7, (1, 4)),  # Pair exists with non-adjacent elements
+    ([1, 2, 3, 4, 5], 6, (0, 4)),  # Pair exists with adjacent elements
+    ([10, 20, 30, 40, 50], 90, (3, 4)),  # Large numbers
+    ([1, 2, 3, 4, 5], 0, None),  # Sum is zero, no valid pair
+    ([1, 2, 3, 4, 5], -1, None),  # Negative sum, no valid pair
+    ([1, 2, 3, 4, 5], 3, (0, 1)),  # Pair exists at the start
+    ([1, 2, 3, 4, 5], 4, (0, 2)),  # Pair exists with gap
+    ([1, 2, 3, 4, 5], 5, (0, 3)),  # Pair exists with larger gap
+    ([1, 2, 3, 4, 5], 11, None),  # Sum exceeds all possible pairs
+    ([1, 2, 3, 4, 5], 2, None),  # Sum equals a single element, no pair
+])
+def test_pair_with_sum(nums, sum_num, expected):
+    assert pair_with_sum(nums, sum_num) == expected
+
 @pytest.mark.parametrize("s, expected", [
     ("aba", True),
     ("abab", False),
