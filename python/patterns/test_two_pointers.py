@@ -1,6 +1,32 @@
 import pytest
 from two_pointers import *
 
+@pytest.mark.parametrize("nums, expected", [
+    ([1,2,0,3,0,6,3,0,0,2], [1,2,3,6,3,2,0,0,0,0]),
+    ([1,0,2,3,0,6,0,3,0,2], [1,2,3,6,3,2,0,0,0,0]),
+    ([], []),
+    ([0], [0]),
+    ([1], [1]),
+    ([1, 0], [1, 0]),
+    ([0, 1], [1, 0]),
+    ([0, 0, 0, 0], [0, 0, 0, 0]),  # All zeros
+    ([1, 2, 3, 4], [1, 2, 3, 4]),  # No zeros
+    ([0, 0, 1, 0, 2, 0, 3, 0], [1, 2, 3, 0, 0, 0, 0, 0]),  # Zeros interspersed
+    ([0, 0, 0, 1], [1, 0, 0, 0]),  # Zeros followed by a single number
+    ([1, 0, 0, 0], [1, 0, 0, 0]),  # Single number followed by zeros
+    ([1, 0, 2, 0, 3, 0, 4, 0], [1, 2, 3, 4, 0, 0, 0, 0]),  # Alternating zeros and numbers
+    ([0, 1, 0, 2, 0, 3, 0, 4], [1, 2, 3, 4, 0, 0, 0, 0]),  # Alternating zeros and numbers starting with zero
+    ([1, 0, 0, 2, 0, 0, 3, 0, 0, 4], [1, 2, 3, 4, 0, 0, 0, 0, 0, 0]),  # Multiple zeros between numbers
+    ([1, 2, 3, 0, 0, 0, 0], [1, 2, 3, 0, 0, 0, 0]),  # Zeros only at the end
+    ([0, 0, 0, 0, 1, 2, 3], [1, 2, 3, 0, 0, 0, 0]),  # Zeros only at the beginning
+    ([0, 1, 0, 0, 2, 0, 0, 3, 0, 0], [1, 2, 3, 0, 0, 0, 0, 0, 0, 0]),  # Zeros interspersed with multiple gaps
+    ([1, 0, 0, 0, 0, 0, 0, 0, 0, 2], [1, 2, 0, 0, 0, 0, 0, 0, 0, 0]),  # Large gap of zeros between numbers
+    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),  # All zeros in a large array
+    ([1, 0, 2, 0, 3, 0, 4, 0, 5, 0], [1, 2, 3, 4, 5, 0, 0, 0, 0, 0]),  # Alternating zeros and numbers with increasing sequence
+    ([0, 5, 0, 4, 0, 3, 0, 2, 0, 1], [5, 4, 3, 2, 1, 0, 0, 0, 0, 0]),  # Alternating zeros and numbers with decreasing sequence
+])
+def test_move_zeros_back(nums, expected):
+    assert move_zeroes_back(nums) == expected
 
 @pytest.mark.parametrize("nums, sum_num, expected", [
     ([1, 2], 3, (0, 1)),

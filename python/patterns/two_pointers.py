@@ -1,3 +1,16 @@
+def move_zeroes_back(nums):
+    p_slow, p_fast = 0, 0
+    while p_fast < len(nums):
+        if nums[p_fast] != 0:
+            nums[p_slow] = nums[p_fast]
+            p_slow += 1
+        p_fast += 1
+    while p_slow < len(nums):
+        nums[p_slow] = 0
+        p_slow += 1
+
+    return nums
+
 def pair_with_sum(nums, sum_num):
     p_left, p_right = 0, len(nums)-1
     while p_left < p_right:
