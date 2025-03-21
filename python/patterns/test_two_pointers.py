@@ -1,5 +1,5 @@
 import pytest
-from valid_palindrome import *
+from two_pointers import *
 
 @pytest.mark.parametrize("s, expected", [
     ("aba", True),
