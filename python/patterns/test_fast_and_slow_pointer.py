@@ -17,3 +17,18 @@ from fast_and_slow_pointer import *
 ])
 def test_happy_number(num, expected):
     assert happy_number(num) == expected
+
+@pytest.mark.parametrize("arr, expected", [
+    ([1, 2, 3, 4, 0], True),  # Cycle exists: 0 -> 1 -> 2 -> 3 -> 4 -> 0
+    ([1, 2, 3, 4, 5], False), # No cycle
+    ([2, 0, 1], True),        # Cycle exists: 0 -> 2 -> 1 -> 0
+    ([1, 1], True),           # Cycle exists: 0 -> 1 -> 1
+    ([0], True),              # Single element pointing to itself
+    ([1, 2, 3, 4, 5, 0], True), # Cycle exists: 0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 0
+    ([1, 2, 3, 4, 5, 6], False), # No cycle
+    ([3, 1, 2, 0], True),     # Cycle exists: 0 -> 3 -> 0
+    ([2, 2, 2, 2], True),     # Cycle exists: 0 -> 2 -> 2 -> 2
+    ([1, 3, 0, 4, 2], True),  # Cycle exists: 0 -> 1 -> 3 -> 4 -> 2 -> 0
+])
+def test_detect_cycle_in_array(arr, expected):
+    assert detect_cycle(arr) == expected

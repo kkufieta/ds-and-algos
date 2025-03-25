@@ -14,3 +14,16 @@ def happy_number(n):
             return False
 
     return True
+
+def detect_cycle(nums):
+    p_fast, p_slow = 0, 0
+    while p_slow < len(nums) and p_fast < len(nums):
+        p_slow = nums[p_slow]
+        p_fast = nums[p_fast]
+        if p_fast >= len(nums):
+            return False
+        p_fast = nums[p_fast]
+        if p_slow == p_fast:
+            return True
+
+    return False
