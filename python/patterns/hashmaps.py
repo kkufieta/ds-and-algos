@@ -11,3 +11,7 @@ def permutation_is_palindrome(s):
         else:
             odd_count -= 1
     return odd_count <= 1
+
+# Find four elements a, b, c, and d in an array such that a+b=c+d.
+def find_equal_sums(nums):
+    return 0, 0, 0, 0
