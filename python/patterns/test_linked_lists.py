@@ -1,5 +1,5 @@
 import pytest
-import reverse_linked_list as rll
+from linked_lists import *
 from lib import linked_list as ll
 
 @pytest.mark.parametrize("nums_list", [
@@ -12,8 +12,7 @@ from lib import linked_list as ll
     [0],
     [],
 ])
-
 def test_reverse_linked_list(nums_list):
     linked_list = ll.LinkedList(nums_list)
-    rll.reverse_linked_list(linked_list)
+    reverse_linked_list(linked_list)
     assert linked_list.as_array() == nums_list[::-1]
