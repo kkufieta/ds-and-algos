@@ -31,7 +31,6 @@ def first_and_last(nums, target):
                 l = mid + 1
         return None
 
-
     first, last = None, None
     first_found = find_index(0, len(nums) - 1,
                              lambda x: nums[x] == target,
@@ -43,29 +42,15 @@ def first_and_last(nums, target):
         if is_leftmost(first_found):
             first = first_found
         else:
-            l, r = 0, first_found - 1
-            while l <= r:
-                mid = get_mid(l, r)
-                if is_leftmost(mid):
-                    first = mid
-                    break
-                elif nums[mid] == target:
-                    r = mid - 1
-                else:
-                    l = mid + 1
+            first = find_index(0, first_found - 1,
+                               lambda x: is_leftmost(x),
+                               lambda x: nums[x] == target)
         if is_rightmost(first_found):
             last = first_found
         else:
-            l, r = first_found + 1, len(nums) - 1
-            while l <= r:
-                mid = get_mid(l, r)
-                if is_rightmost(mid):
-                    last = mid
-                    break
-                elif nums[mid] == target:
-                    l = mid + 1
-                else:
-                    r = mid - 1
+            last = find_index(first_found + 1, len(nums) - 1,
+                       lambda x: is_rightmost(x),
+                       lambda x: nums[x] > target)
 
     return first, last
 
