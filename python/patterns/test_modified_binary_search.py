@@ -18,11 +18,24 @@ def test_binary_search(nums, target, expected):
     assert binary_search(nums, target) == expected
 
 @pytest.mark.parametrize("nums, target, expected", [
+    ([2, 4, 5, 5, 5, 5, 5, 6, 6], 5, (2, 6)),
+    ([10, 100, 101, 101], 101, (2, 3)),
+    ([1, 2, 3, 3, 3, 3, 10], 3, (2, 5)),
+    ([1, 1, 2, 4, 4, 4, 6, 6], 4, (3, 5)),
+    ([1, 1, 1, 2, 2], 1, (0, 2)),
+    ([1, 1, 2, 4, 4, 4, 6, 6], 7, (None, None)),
+])
+def test_first_and_last(nums, target, expected):
+    assert first_and_last(nums, target) == expected
+
+@pytest.mark.parametrize("nums, target, expected", [
     ([2, 4, 5, 5, 5, 5, 5, 6, 6], 5, True),
     ([10, 100, 101, 101], 101, False),
     ([1, 2, 3, 3, 3, 3, 10], 3, True),
     ([1, 1, 2, 4, 4, 4, 6, 6], 4, False),
-    ([1, 1, 1, 2, 2], 1, True)
+    ([1, 1, 1, 2, 2], 1, True),
+    ([1, 1, 2, 4, 4, 4, 6, 6], 7, False),
+    ([1, 1, 1, 2, 2], 3, False),
 ])
 def test_is_majority(nums, target, expected):
     assert is_majority(nums, target) == expected
