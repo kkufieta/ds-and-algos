@@ -1,4 +1,5 @@
 import pytest
+from math import sqrt
 from modified_binary_search import *
 
 @pytest.mark.parametrize("nums, target, expected", [
@@ -39,3 +40,12 @@ def test_first_and_last(nums, target, expected):
 ])
 def test_is_majority(nums, target, expected):
     assert is_majority(nums, target) == expected
+
+@pytest.mark.parametrize("x, expected", [
+    (-1, None),
+    (-0.5, None),
+    (9.5, None)] +
+    [(i, sqrt(i)//1) for i in range(102)]
+    )
+def test_integer_sqrt(x, expected):
+    assert integer_sqrt(x) == expected

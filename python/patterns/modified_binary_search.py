@@ -65,3 +65,25 @@ def is_majority(nums, target):
         return (rightmost - leftmost + 1) > len(nums)//2
     
     return False
+
+# Get the integer square root of a positive number
+def integer_sqrt(x):
+    # Ensure that x is a positive integer
+    if x < 0 or x != x//1:
+        return None
+
+    if x == 0 or x == 1:
+        return x
+    
+    l, r = 1, x//2
+    while l <= r:
+        mid = l + (r-l)//2
+        squared = lambda x: x**2
+        if squared(mid) <= x and squared(mid+1) > x:
+            return mid
+        elif squared(mid) < x:
+            l = mid + 1
+        else:
+            r = mid - 1
+
+    return x
