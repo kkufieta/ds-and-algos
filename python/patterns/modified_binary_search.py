@@ -61,8 +61,6 @@ def is_majority(nums, target):
         return False
 
     leftmost, rightmost = first_and_last(nums, target)
-    print(leftmost, rightmost)
-
     if leftmost != None and rightmost != None:
         return (rightmost - leftmost + 1) > len(nums)//2
     
