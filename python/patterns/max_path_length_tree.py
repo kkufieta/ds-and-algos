@@ -17,6 +17,24 @@ def get_m_recursive(node, m):
 
     return max(l, r) + 1, max(m, l + r)
 
+def diameter_of_tree(root):
+    if not root:
+        return 0
+    return get_max_length(root)[1]
+
+def get_max_length(node):
+    max_length = 0
+    def get_length(node):
+        nonlocal max_length
+        if node:
+            len_, max_len_ = get_max_length(node)
+            max_length = max(max_length, max_len_)
+            return len_ + 1
+        return 0
+    len_l = get_length(node.left)
+    len_r = get_length(node.right)
+    return max(len_l, len_r), max(max_length, len_l + len_r)
+
 
 def get_max_path_length_sequential(root):
     if not root:
