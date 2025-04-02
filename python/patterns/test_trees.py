@@ -1,6 +1,6 @@
 import pytest
 from lib import tree
-import max_path_length_tree as mplt
+import trees as mplt
 
 @pytest.mark.parametrize("bt_list, max_path_length", [
    ([], 0),
