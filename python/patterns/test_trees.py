@@ -22,8 +22,7 @@ import trees as mplt
    ([1, 2, 3, 4, 5, None, 6, None, None, 7, 8, None, 9, None, None, None, None, 10, 11, 12, 13], 8),
 ])
 def test_max_path_length_tree(bt_list, max_path_length):
-    bt = tree.BinaryTree()
-    bt.create_from_list(bt_list)
+    bt = tree.BinaryTree(bt_list)
     assert mplt.get_max_path_length_recursive(bt.root) == max_path_length
     assert mplt.get_max_path_length_sequential(bt.root) == max_path_length
     assert mplt.diameter_of_tree(bt.root) == max_path_length
@@ -49,8 +48,6 @@ def test_max_path_length_tree(bt_list, max_path_length):
    ([1, 2, 2, 3, None, None, 3], True), 
    ([1, 2, 2, None, 3, None, 3], False) 
 ])
-# TODO[kat]: allow creation of tree from list directly
 def test_symmetric_binary_tree(bt_list, expected):
-    bt = tree.BinaryTree()
-    bt.create_from_list(bt_list)
+    bt = tree.BinaryTree(bt_list)
     assert mplt.symmetric_binary_tree(bt.root) == expected

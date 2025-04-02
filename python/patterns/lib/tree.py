@@ -8,9 +8,11 @@ class BinaryTreeNode:
 
     
 class BinaryTree:
-    def __init__(self):
+    def __init__(self, bt_list=None):
         self.root = None
         self.size = 0
+        if bt_list:
+            self.create_from_list(bt_list)
 
     def create_from_list(self, bt_list):
         if not bt_list or not bt_list[0]:

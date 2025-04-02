@@ -1,8 +1,7 @@
 import pytest
 from lib import tree
 
-
-@pytest.mark.parametrize("bt_list", [
+bt_list = [
     [],
     [1],
     [9, 8],
@@ -18,13 +17,24 @@ from lib import tree
     [5, None, 6, None, 7, None, 8, None, 9],
     [4, 10, 20, None, None, 15, 7],
     [1, 2, 3, 4, 5, None, None, 8, None, 9, None, 10, None, 11],
-])
+]
 
+@pytest.mark.parametrize("bt_list", bt_list)
 def test_tree_list_funcs(bt_list):
     bt = tree.BinaryTree()
     bt.create_from_list(bt_list)
     print(bt.to_list(), bt_list)
     assert bt.to_list() == bt_list
+
+@pytest.mark.parametrize("bt_list", bt_list)
+def test_tree_init(bt_list):
+    bt_init = tree.BinaryTree(bt_list)
+    bt = tree.BinaryTree()
+    bt.create_from_list(bt_list)
+    print(bt.to_list(), bt_list)
+    assert bt_init.to_list() == bt_list
+    assert bt.to_list() == bt_list
+    assert bt_init.to_list() == bt.to_list()
 
 def test_tree():
     bt = tree.BinaryTree()
