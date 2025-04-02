@@ -1,4 +1,5 @@
 from lib import tree
+# Get the diameter of a tree (i.e. the longest path in the tree)
 def get_max_path_length_recursive(root):
     if not root:
         return 0
@@ -16,6 +17,7 @@ def get_m_recursive(node):
 
     return max(l, r), max(m_l, m_r, l + r)
 
+# Get the diameter of a tree (i.e. the longest path in the tree)
 def diameter_of_tree(root):
     if not root:
         return 0
@@ -32,6 +34,7 @@ def get_max_length(node):
     return max(len_l, len_r), max(max_len_l, max_len_r, len_l + len_r)
 
 
+# Get the diameter of a tree (i.e. the longest path in the tree)
 def get_max_path_length_sequential(root):
     if not root:
         return 0
