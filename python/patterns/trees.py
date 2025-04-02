@@ -1,4 +1,6 @@
 from lib import tree
+from collections import deque
+
 # Get the diameter of a tree (i.e. the longest path in the tree)
 def get_max_path_length_recursive(root):
     if not root:
@@ -71,3 +73,23 @@ def get_max_path_length_sequential(root):
                 l_queue.pop()
 
     return m
+
+# Checks if a binary tree is symmetric around its root.
+def symmetric_binary_tree(root):
+    if not root:
+        return True
+    q = deque([root.left, root.right])    
+
+    asymmetric_structure = lambda l, r: (l == None and r != None) or (r == None and l != None)
+    asymmetric_values = lambda l, r: l != None and r != None and l.data != r.data
+
+    while len(q) != 0:
+        if len(q)%2 != 0:
+            return False
+        l, r = q.popleft(), q.popleft()
+        if asymmetric_structure(l, r) or asymmetric_values(l, r):
+            return False
+        if l != None and r != None:
+            q.extend([l.left, r.right, l.right, r.left])
+
+    return True
