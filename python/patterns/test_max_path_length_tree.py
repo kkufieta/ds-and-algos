@@ -6,6 +6,7 @@ import max_path_length_tree as mplt
    ([], 0),
    ([1], 0),
    ([9, 8], 1),
+   ([1, 2, 3], 2),
    ([1, 2, 3, 4, 5, 6], 4),
    ([12, 7, 1, 9, 10, 15], 4),
    ([3, 9, 20, 15, 7], 3),
@@ -18,6 +19,7 @@ import max_path_length_tree as mplt
    ([5, None, 6, None, 7, None, 8, None, 9], 4),
    ([4, 10, 20, None, None, 15, 7], 3),
    ([1, 2, 3, 4, 5, None, None, 8, None, 9, None, 10, None, 11], 6),
+   ([1, 2, 3, 4, 5, None, 6, None, None, 7, 8, None, 9, None, None, None, None, 10, 11, 12, 13], 8),
 ])
 
 def test_max_path_length_tree(bt_list, max_path_length):
