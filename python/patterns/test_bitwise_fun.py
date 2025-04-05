@@ -19,7 +19,6 @@ from bitwise_fun import *
     ("", "", -1),
     ("mein Name ist", "mein Name ist", -1)
 ])
-
 def test_find_difference(str1, str2, index):
     assert find_difference(str1, str2) == index
 
