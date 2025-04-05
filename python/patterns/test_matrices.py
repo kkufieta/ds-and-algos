@@ -1,5 +1,5 @@
 import pytest
-from matrix_fun import *
+from matrices import *
 
 @pytest.mark.parametrize("mat, expected_mat", [
     ([[1,2,3],[4,5,6],[7,0,9]], [[1,0,3],[4,0,6],[0,0,0]]),
@@ -20,6 +20,5 @@ from matrix_fun import *
     ([[3, 5, 2, 0], [1, 0, 4, 6], [7, 3, 2, 4]], [[0, 0, 0, 0], [0, 0, 0, 0], [7, 0, 2, 0]]),
     ([[12, 14, 7, 0], [6, 9, 11, 21], [0, 4, 8, 3], [5, 7, 4, 0], [2, 3, 1, 6]], [[0, 0, 0, 0], [0, 9, 11, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 3, 1, 0]]),
 ])
-
 def test_set_zeroes(mat, expected_mat):
     assert set_zeroes(mat) == expected_mat
