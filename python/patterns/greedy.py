@@ -1,8 +1,5 @@
 
 def jump_game(nums):
-    if len(nums) <= 1:
-        return True
-
     target_i = len(nums) - 1
 
     while target_i > 0:
