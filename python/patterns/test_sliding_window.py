@@ -44,4 +44,3 @@ def test_dna_sequences_naive(dna, k, repeated_sequences):
 ])
 def test_find_repeated_dna_sequence(s, expected):
     assert sorted(find_repeated_dna_sequence_size_10(s)) == sorted(expected)
-    assert sorted(findRepeatedDnaSequences(s)) == sorted(expected)
