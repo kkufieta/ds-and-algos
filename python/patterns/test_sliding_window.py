@@ -21,6 +21,7 @@ def test_dna_sequences_naive(dna, k, repeated_sequences):
     repeated_sequences.sort()
 
     assert output == repeated_sequences
+    assert sorted(find_repeated_dna_sequence_size_k(dna, k)) == repeated_sequences
 
 
 @pytest.mark.parametrize("s, expected", [
