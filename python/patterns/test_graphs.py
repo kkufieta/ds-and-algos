@@ -1,5 +1,5 @@
 import pytest
-from network_delay_time import network_delay_time
+from graphs import *
 
 
 @pytest.mark.parametrize("times, n, k, expected", [
