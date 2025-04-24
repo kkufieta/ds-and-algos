@@ -55,3 +55,4 @@ from graphs import *
 
 def test_network_delay_time(times, n, k, expected):
     assert network_delay_time(times, n, k) == expected
+    assert network_delay_time_optimized(times, n, k) == expected
