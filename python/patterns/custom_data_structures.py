@@ -23,7 +23,8 @@ class SnapshotArray:
         return a
 
     def set_value(self, idx, val):
-        if (len(self.snaps[self.current_id]) == 0
+        if idx >= 0 and idx < self.length and (
+            len(self.snaps[self.current_id]) == 0
             or idx not in self.snaps[self.current_id]
             or self.snaps[self.current_id][idx] != val):
 
@@ -32,7 +33,7 @@ class SnapshotArray:
 
     def get_value(self, idx, snap_id):
         if self.snap_id < 0 or snap_id < 0 or snap_id > self.snap_id or idx < 0 or idx >= self.length:
-            return -1
+            return None
 
         snap = lambda snap_id: self.snaps[self.snap_map[snap_id]]
         return snap(snap_id)[idx] if idx in snap(snap_id) else 0
