@@ -106,7 +106,7 @@ def test_snapshot_array(actions, inputs, expected_outputs, expected_current_stat
     snap_array = None
     for action, input, expected_output, expected_state in zip(actions, inputs, expected_outputs, expected_current_states):
         if action == snapshot_array:
-            snap_array = SnapshotArray(input)
+            snap_array = SnapshotArray(*input)
             assert snap_array != None
         elif action == set_value:
             assert snap_array.set_value(*input) == expected_output
