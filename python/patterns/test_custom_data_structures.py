@@ -18,7 +18,7 @@ snapshot = "snapshot"
 @pytest.mark.parametrize("actions, inputs, expected_outputs, expected_current_states", [
 [[snapshot_array, set_value, snapshot, set_value, get_value, get_value] ,
  [[3],[1, 4], [], [1, 7], [1, 0], [1, 1]],
- [None, None, 0, None, 4, 7],
+ [None, None, 0, None, 4, -1],
  [
      [0, 0, 0],
      [0, 4, 0],
@@ -39,9 +39,9 @@ snapshot = "snapshot"
      [4, 6, 0],
      [4, 6, 0],
  ]],
-[[snapshot_array,set_value, snapshot, get_value, set_value, snapshot, get_value, get_value] ,
- [[3], [0, 6], [], [0, 0], [1, 8], [], [1, 1], [0, 1]],
- [None, None, 0, 6, None, 1, 8, 0],
+[[snapshot_array,set_value, snapshot, get_value, set_value, snapshot, get_value, get_value, get_value] ,
+ [[3], [0, 6], [], [0, 0], [1, 8], [], [1, 1], [0, 1], [0, 0]],
+ [None, None, 0, 6, None, 1, 8, 6, 0],
  [
      [0, 0, 0],
      [6, 0, 0],
