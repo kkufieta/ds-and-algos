@@ -1,6 +1,6 @@
 import pytest
-from lib.find_subsets import find_subsets
-@pytest.mark.parametrize("arr, expected", [
+from lib.find_subsets import *
+@pytest.mark.parametrize("nums, expected", [
     ([1, 2, 3], [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]),
     ([], [[]]),
     ([1], [[], [1]]),
@@ -17,5 +17,13 @@ from lib.find_subsets import find_subsets
     ([1,2,3,4], [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3],[4],[1,4],[2,4],[1,2,4],[3,4],[1,3,4],[2,3,4],[1,2,3,4]]),
     ([0], [[],[0]])
 ])
-def test_find_subsets(arr, expected):
-    assert sorted(find_subsets(arr)) == sorted(expected)
+def test_find_subsets(nums, expected):
+    assert sorted(find_subsets(nums)) == sorted(expected)
+    
+    subsets, expected_subsets = [], []
+    for subset in find_subsets_using_bitmasking(nums):
+        subsets.append(sorted(subset))
+    for subset in expected:
+        expected_subsets.append(sorted(subset))
+    
+    assert sorted(subsets) == sorted(expected_subsets)
