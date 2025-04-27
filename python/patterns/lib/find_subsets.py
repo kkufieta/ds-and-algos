@@ -1,3 +1,4 @@
+# Note: All elements in arr are unique
 def find_subsets(arr):
     subsets = [[]]
 
