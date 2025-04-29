@@ -1,5 +1,6 @@
 import pytest
-import modified_binary_search
+from math import sqrt
+from modified_binary_search import *
 
 @pytest.mark.parametrize("nums, target, expected", [
     ([1,6,8,10], 1, 0),
@@ -14,6 +15,37 @@ import modified_binary_search
     ([-30,-27,-8,-6,-1], -33, -1),
     ([0], 1, -1),
 ])
-
 def test_binary_search(nums, target, expected):
-    assert modified_binary_search.binary_search(nums, target) == expected
+    assert binary_search(nums, target) == expected
+
+@pytest.mark.parametrize("nums, target, expected", [
+    ([2, 4, 5, 5, 5, 5, 5, 6, 6], 5, (2, 6)),
+    ([10, 100, 101, 101], 101, (2, 3)),
+    ([1, 2, 3, 3, 3, 3, 10], 3, (2, 5)),
+    ([1, 1, 2, 4, 4, 4, 6, 6], 4, (3, 5)),
+    ([1, 1, 1, 2, 2], 1, (0, 2)),
+    ([1, 1, 2, 4, 4, 4, 6, 6], 7, (None, None)),
+])
+def test_first_and_last(nums, target, expected):
+    assert first_and_last(nums, target) == expected
+
+@pytest.mark.parametrize("nums, target, expected", [
+    ([2, 4, 5, 5, 5, 5, 5, 6, 6], 5, True),
+    ([10, 100, 101, 101], 101, False),
+    ([1, 2, 3, 3, 3, 3, 10], 3, True),
+    ([1, 1, 2, 4, 4, 4, 6, 6], 4, False),
+    ([1, 1, 1, 2, 2], 1, True),
+    ([1, 1, 2, 4, 4, 4, 6, 6], 7, False),
+    ([1, 1, 1, 2, 2], 3, False),
+])
+def test_is_majority(nums, target, expected):
+    assert is_majority(nums, target) == expected
+
+@pytest.mark.parametrize("x, expected", [
+    (-1, None),
+    (-0.5, None),
+    (9.5, None)] +
+    [(i, sqrt(i)//1) for i in range(102)]
+    )
+def test_integer_sqrt(x, expected):
+    assert integer_sqrt(x) == expected
