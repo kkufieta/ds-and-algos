@@ -1,29 +1,20 @@
-def flood_fill(grid, sr, sc, target):
-    if len(grid) == 0 or len(grid[0]) == 0:
+from collections import deque
+
+def flood_fill(grid, r, c, target):
+    valid_r = lambda r: r >= 0 and r < len(grid)
+    valid_c = lambda c: c >= 0 and c < len(grid[0])
+    valid_rc = lambda r, c: valid_r(r) and valid_c(c)
+    if len(grid) == 0 or not valid_rc(r, c) or grid[r][c] == target:
         return grid
-
-    last_row = len(grid) - 1
-    last_col = len(grid[0]) - 1
-    if sr < 0 or sr > last_row or sc < 0 or sc > last_col:
-        return grid
-
-    if grid[sr][sc] == target:
-        return grid
-
-    return flood(grid, sr, sc, target, grid[sr][sc])
-
-def flood(grid, sr, sc, target, match):
-    last_row = len(grid) - 1
-    last_col = len(grid[0]) - 1
-    if sr < 0 or sr > last_row or sc < 0 or sc > last_col:
-        return grid
-
-    if grid[sr][sc] != match:
-        return grid
-
-    grid[sr][sc] = target
-
-    for i, j in [(sr-1, sc), (sr+1, sc), (sr, sc-1), (sr, sc+1)]:
-        grid = flood(grid, i, j, target, match)
-
+    
+    val = grid[r][c]
+    valid_n = lambda r, c: valid_rc(r, c) and grid[r][c] == val
+    neighbors = lambda r, c: [rc for rc in [(r+1,c), (r-1,c), (r,c+1), (r,c-1)] if valid_n(*rc)]
+    grid[r][c] = target
+    q = deque([(r, c)])
+    while len(q) != 0:
+        ns = neighbors(*q.popleft())
+        for r, c in ns:
+            grid[r][c] = target
+        q.extend(ns)
     return grid
