@@ -23,9 +23,9 @@ from lib import trie
     (["Trie","insert","insert","search","search_prefix","insert","search_prefix"],
      [None,"hello","hell","he","h","helicopter","heli"],
      [None,None,None,False,True,None,True]),
-    (["Trie","insert","insert","insert","insert","search","search_prefix","search_prefix","search"],
-     [None,"apple","banana","mango","strawberry","ap","ban","x","mango"],
-     [None,None,None,None,None,False,True,False,True]),
+    (["Trie","insert","insert","insert","insert","search","search_prefix","search_prefix","search", "search"],
+     [None,"apple","banana","mango","strawberry","ap","ban","x","mango", "did not add this one yet"],
+     [None,None,None,None,None,False,True,False,True, False]),
 ])
 def test_trie(methods, inputs, expected):
     t = None
