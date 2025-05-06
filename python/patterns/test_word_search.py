@@ -18,7 +18,7 @@ from word_search import find_strings
      ["OATH","PEA","EAT","RAIN"],
      ["OATH","EAT"]),
     ([[]],
-     ["hi"],
+     ["HI"],
      []),
     ([["O","A","A","N"],["E","T","A","E"],["I","H","K","R"],["I","F","L","V"]],
      [],
