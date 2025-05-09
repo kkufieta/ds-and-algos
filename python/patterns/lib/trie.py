@@ -43,7 +43,6 @@ class Trie():
             node = node.children[c]
 
         for parent, c in reversed(child_list):
-            target = parent.children[c]
             if parent.children[c].children:
                 return
             del parent.children[c]
