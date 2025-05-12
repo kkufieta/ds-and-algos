@@ -1,5 +1,5 @@
 import pytest
-from compilation_order import compilation_order
+from topological_sort import *
 
 
 @pytest.mark.parametrize("dependencies, expected", [
