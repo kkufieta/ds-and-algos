@@ -1,9 +1,6 @@
 from lib import trie
 
 def find_strings(grid, words):
-  if len(grid) == 0 or len(grid[0]) == 0 or len(words) == 0:
-    return []
-  
   t = trie.Trie()
   for w in words:
     t.insert(w)
@@ -18,7 +15,7 @@ def find_strings(grid, words):
   
   return found_words
 
-def find_words(grid, r, c, node, s, t):
+def find_words(grid, row, col, node, s, t):
   found_words = []
   if node.is_word:
     found_words.append(s)
@@ -31,10 +28,10 @@ def find_words(grid, r, c, node, s, t):
   neighbors = lambda r, c: [(r-1,c), (r+1,c), (r,c-1), (r,c+1)]
   valid_neighbors = lambda r, c: [n for n in neighbors(r, c) if valid(*n)]
 
-  for r_, c_ in valid_neighbors(r, c):
-    ch = grid[r_][c_]
+  for r, c in valid_neighbors(row, col):
+    ch = grid[r][c]
     if ch in node.children:
-        grid[r_][c_] = None
-        found_words.extend(find_words(grid, r_, c_, node.children[ch], s+ch, t))
-        grid[r_][c_] = ch
+        grid[r][c] = None
+        found_words.extend(find_words(grid, r, c, node.children[ch], s+ch, t))
+        grid[r][c] = ch
   return found_words
