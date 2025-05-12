@@ -11,15 +11,17 @@ def find_strings(grid, words):
   found_words = []
   for row in range(len(grid)):
     for col in range(len(grid[0])):
-      found_words.extend(backtrack(grid, row, col, t.root, "", t))
+      found_words.extend(find_words(grid, row, col, t.root, "", t))
   
   return found_words
 
-def backtrack(grid, row, col, node, word, t):
+def find_words(grid, row, col, node, word, t):
   found_words = []
   if node.is_word:
     found_words.append(word)
     t.remove_characters(word)
+    if not t.search_prefix(word):
+      return found_words
 
   last_row = len(grid) - 1
   last_col = len(grid[0]) - 1
@@ -37,6 +39,6 @@ def backtrack(grid, row, col, node, word, t):
       if node == None or letter not in node.children:
         grid[row][col] = letter
         return found_words
-      found_words.extend(backtrack(grid, r, c, node.children[letter], word+letter, t))
+      found_words.extend(find_words(grid, r, c, node.children[letter], word+letter, t))
     grid[row][col] = letter
   return found_words
