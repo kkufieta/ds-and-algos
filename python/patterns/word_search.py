@@ -9,36 +9,32 @@ def find_strings(grid, words):
     t.insert(w)
     
   found_words = []
-  for row in range(len(grid)):
-    for col in range(len(grid[0])):
-      found_words.extend(find_words(grid, row, col, t.root, "", t))
+  for r, row in enumerate(grid):
+    for c, ch in enumerate(row):
+      if ch in t.root.children:
+        grid[r][c] = None
+        found_words.extend(find_words(grid, r, c, t.root.children[ch], ch, t))
+        grid[r][c] = ch
   
   return found_words
 
-def find_words(grid, row, col, node, word, t):
+def find_words(grid, r, c, node, s, t):
   found_words = []
   if node.is_word:
-    found_words.append(word)
-    t.remove_characters(word)
-    if not t.search_prefix(word):
+    found_words.append(s)
+    t.remove_characters(s)
+    if not t.search_prefix(s):
       return found_words
 
-  last_row = len(grid) - 1
-  last_col = len(grid[0]) - 1
-  
-  if row < 0 or row > last_row or col < 0 or col > last_col:
-    return found_words
-    
-  if grid[row][col] == None:
-    return found_words
-    
-  letter = grid[row][col]
-  if letter in node.children:
-    grid[row][col] = None
-    for r, c in [(row-1, col), (row+1, col), (row, col-1), (row, col+1)]:
-      if node == None or letter not in node.children:
-        grid[row][col] = letter
-        return found_words
-      found_words.extend(find_words(grid, r, c, node.children[letter], word+letter, t))
-    grid[row][col] = letter
+  valid_indices = lambda r, c: r >= 0 and c >= 0 and r < len(grid) and c < len(grid[0])
+  valid = lambda r, c: valid_indices(r, c) and grid[r][c] != None
+  neighbors = lambda r, c: [(r-1,c), (r+1,c), (r,c-1), (r,c+1)]
+  valid_neighbors = lambda r, c: [n for n in neighbors(r, c) if valid(*n)]
+
+  for r_, c_ in valid_neighbors(r, c):
+    ch = grid[r_][c_]
+    if ch in node.children:
+        grid[r_][c_] = None
+        found_words.extend(find_words(grid, r_, c_, node.children[ch], s+ch, t))
+        grid[r_][c_] = ch
   return found_words
