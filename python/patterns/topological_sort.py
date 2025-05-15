@@ -1,17 +1,13 @@
-from collections import deque
+from collections import deque, defaultdict
 
 def compilation_order(dependencies):
-    in_degree, graph = {}, {}
+    in_degree, graph = defaultdict(int), defaultdict(list)
 
     for child, parent in dependencies:
-        if child not in in_degree:
-            in_degree[child] = 0
         if parent not in in_degree:
             in_degree[parent] = 0
         if child not in graph:
             graph[child] = []
-        if parent not in graph:
-            graph[parent] = []
 
         in_degree[child] += 1
         graph[parent].append(child)
