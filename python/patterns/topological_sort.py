@@ -4,13 +4,10 @@ def compilation_order(dependencies):
     in_degree, graph = defaultdict(int), defaultdict(list)
 
     for child, parent in dependencies:
-        if parent not in in_degree:
-            in_degree[parent] = 0
-        if child not in graph:
-            graph[child] = []
-
-        in_degree[child] += 1
         graph[parent].append(child)
+        graph[child].extend([])
+        in_degree[parent] += 0
+        in_degree[child] += 1
 
     i, compilation_order = 0, [node for node in in_degree if in_degree[node] == 0]
     while i < len(compilation_order):
@@ -20,4 +17,4 @@ def compilation_order(dependencies):
                 compilation_order.append(child)
         i += 1
 
-    return compilation_order
+    return compilation_order if len(compilation_order) == len(graph) else []
