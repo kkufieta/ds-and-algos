@@ -30,3 +30,36 @@ N, O, P, Q, R, S, T, U, V, W, X, Y, Z = "N", "O", "P", "Q", "R", "S", "T", "U", 
 ])
 def test_compilation_order(dependencies, expected):
     assert compilation_order(dependencies) in expected
+
+@pytest.mark.parametrize("words, expected_free, expected_ordered", [
+    (["ca", "aa", "ab"], {'c'}, ['a', 'b']),
+    (["ac", "ab", "zc", "zb"], {'a', 'c'}, ['z', 'b']), # 2nd is an imperfect test, since b and z are allowed to arrive in any order
+    (["baa", "abcd", "abca", "cab", "cad"], {'b'}, ['d', 'a', 'c']),
+    (["mdx", "mars", "avgd", "dkae"] , {}, []),
+    (["m", "a", "b", "s"], {'m'}, ['a', 'b', 's']),
+    (["wrt", "wrf", "er", "ett", "rftt"], {'w'}, ['e', 'r', 't', 'f']),
+    (["alpha", "bravo", "charlie", "delta"] , {'l', 't', 'o', 'p', 'h', 'a', 'v', 'i', 'e', 'r'}, ['b', 'c', 'd']),
+    (["jupyter", "ascending"] , {'d', 's', 't', 'y', 'p', 'e', 'i', 'g', 'n', 'u', 'r', 'j', 'c'}, ['a']),
+    (["vanilla", "alpine", "algor", "port", "norm", "nylon", "ophellia", "hidden"],
+     {'l', 'd', 't', 'i', 'e', 'v', 'm', 'r'}, ['a', 'p', 'g', 'n', 'o', 'y', 'h']),
+    (["xro","xma","per","prt","oxh","olv"] , {'x', 't', 'e', 'h', 'a', 'v'}, ['r', 'p', 'l', 'm', 'o']),
+    (["o","l","m","s"] , {'o'}, ['l', 'm', 's']),
+    (["mdx","mars","avgd","dkae"], {}, []),
+    (["mdxok","mrolw","mroqs","kptz","klr","klon","zvef","zrsu","zzs","orm","oqt"],
+     {'s', 'x', 'w', 'n', 'p', 'u', 'm', 'f', 'd', 'v', 'e', 't'}, ['k', 'l', 'r', 'z', 'q', 'o']),
+    (["m","mx","mxe","mxer","mxerl","mxerlo","mxerlos","mxerlost","mxerlostr","mxerlostrpq","mxerlostrp"] , {}, [])
+])
+def test_alien_order(words, expected_free, expected_ordered):
+    # Note: expected_free is expected to be sorted in descending order before the order of expected_ordered
+    # is determined within alien_order. This is for the sake of the test to work.
+    res = alien_order(words)
+    i = 0
+    for ch in res:
+        if ch in expected_free:
+            expected_free.remove(ch)
+        else:
+            assert i < len(expected_ordered)
+            assert ch == expected_ordered[i]
+            i += 1
+    assert len(expected_free) == 0
+    assert i == len(expected_ordered)
