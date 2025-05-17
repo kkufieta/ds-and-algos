@@ -32,6 +32,7 @@ def test_compilation_order(dependencies, expected):
     assert compilation_order(dependencies) in expected
 
 @pytest.mark.parametrize("words, expected_free, expected_ordered", [
+    ([], {}, []),
     (["ca", "aa", "ab"], {'c'}, ['a', 'b']),
     (["ac", "ab", "zc", "zb"], {'a', 'c'}, ['z', 'b']), # 2nd is an imperfect test, since b and z are allowed to arrive in any order
     (["baa", "abcd", "abca", "cab", "cad"], {'b'}, ['d', 'a', 'c']),
@@ -47,7 +48,8 @@ def test_compilation_order(dependencies, expected):
     (["mdx","mars","avgd","dkae"], {}, []),
     (["mdxok","mrolw","mroqs","kptz","klr","klon","zvef","zrsu","zzs","orm","oqt"],
      {'s', 'x', 'w', 'n', 'p', 'u', 'm', 'f', 'd', 'v', 'e', 't'}, ['k', 'l', 'r', 'z', 'q', 'o']),
-    (["m","mx","mxe","mxer","mxerl","mxerlo","mxerlos","mxerlost","mxerlostr","mxerlostrpq","mxerlostrp"] , {}, [])
+    (["m","mx","mxe","mxer","mxerl","mxerlo","mxerlos","mxerlost","mxerlostr","mxerlostrpq","mxerlostrp"] , {}, []),
+    (["xsfrwaysdqfunrimrrwk"], {'y', 'n', 'x', 'q', 'm', 'r', 'a', 's', 'd', 'u', 'i', 'f', 'k', 'w'}, [])
 ])
 def test_alien_order(words, expected_free, expected_ordered):
     # Note: expected_free is expected to be sorted in descending order before the order of expected_ordered
@@ -57,7 +59,7 @@ def test_alien_order(words, expected_free, expected_ordered):
     for ch in res:
         if ch in expected_free:
             expected_free.remove(ch)
-        else:
+        elif len(expected_ordered) > 0:
             assert i < len(expected_ordered)
             assert ch == expected_ordered[i]
             i += 1
