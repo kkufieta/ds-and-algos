@@ -25,3 +25,7 @@ def test_fibonacci_recursive_naive(num, expected_fibonacci):
 @pytest.mark.parametrize("num, expected_fibonacci", fibonacci_numbers)
 def test_fibonacci_sequential(num, expected_fibonacci):
     assert fibonacci_sequential(num) == expected_fibonacci
+
+@pytest.mark.parametrize("num, expected_fibonacci", fibonacci_numbers)
+def test_fibonacci_dp_top_down_recursive(num, expected_fibonacci):
+    assert fibonacci_dp_top_down_recursive(num) == expected_fibonacci

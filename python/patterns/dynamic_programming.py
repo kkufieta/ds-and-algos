@@ -23,3 +23,18 @@ def fibonacci_sequential(num):
         n1 = n2
         n2 = tmp
     return n2
+
+def fibonacci_dp_top_down_recursive(num):
+    fib_nums = {
+        0: 0,
+        1: 1
+    }
+    def fibonacci(n):
+        nonlocal fib_nums
+        if n in fib_nums:
+            return fib_nums[n]
+        fib_nums[n] = fibonacci(n - 1) + fibonacci(n - 2)
+        return fib_nums[n]
+
+    return fibonacci(num)
+
