@@ -30,17 +30,16 @@ def alien_order(words):
     graph, in_count, all_chars = defaultdict(list), defaultdict(int), set()
     for i in range(len(words)-1):
         w1, w2 = words[i], words[i+1]
-        if len(w1) > len(w2) and w1[:len(w2)] == w2:
-            return ""
-
-        all_chars.update(w1)
-        all_chars.update(w2)
+        all_chars.update(w1+w2)
 
         for ch1, ch2 in zip(w1, w2):
             if ch1 != ch2:
                 graph[ch1].append(ch2)
                 in_count[ch2] += 1
                 break
+        else:
+            if len(w1) > len(w2):
+                return ""
 
     # sorted is not necessary for the algorithm to work and adds unnecessary
     # additional time complexity O(n * log(n)). It is used here only because it
