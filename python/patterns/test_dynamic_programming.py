@@ -1,5 +1,5 @@
 import pytest
-from knapsack import *
+from dynamic_programming import *
 
 @pytest.mark.parametrize("capacity, weights, values, expected", [
     (6 , [1,2,3,5] , [1,5,4,8], 10),
