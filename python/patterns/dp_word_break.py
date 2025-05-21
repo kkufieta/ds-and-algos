@@ -1,8 +1,10 @@
+# TODO[kat]: Once the kk/trie branch is merged, remove this and import the library
 class TrieNode:
     def __init__(self):
         self.children = {}
         self.is_word = False
 
+# TODO[kat]: Once the kk/trie branch is merged, remove this and import the library
 class Trie:
     def __init__(self):
         self.root = TrieNode()
