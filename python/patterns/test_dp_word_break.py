@@ -1,5 +1,5 @@
 import pytest
-from word_break import *
+from dp_word_break import *
 
 @pytest.mark.parametrize("s, word_dict, expected", [
     ("magiclly" , ["ag","al","icl","mag","magic","ly","lly"], ["mag icl ly","magic lly"]),
