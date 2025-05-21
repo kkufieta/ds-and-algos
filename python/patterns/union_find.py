@@ -1,3 +1,5 @@
+from lib import union_find
+
 class UnionFind:
     def __init__(self, n):
         self.dsu = [i for i in range(n+1)]
@@ -26,16 +28,17 @@ class UnionFind:
 
 
 def redundant_connection(edges):
-    uf = UnionFind(len(edges))
+    uf = union_find.UnionFind(len(edges))
     redundant_edge = []
     for a, b in edges:
-        if uf.find_parent(a) == uf.find_parent(b):
+        if uf.find(a) == uf.find(b):
             redundant_edge = [a, b]
         else:
             uf.union(a, b)
 
     return redundant_edge
 
+# TODO[kat]: Use union find that's implemented in lib
 class World:
     def __init__(self, rows, cols):
         self.rows = rows
