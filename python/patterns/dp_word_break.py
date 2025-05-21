@@ -6,8 +6,10 @@ class TrieNode:
 
 # TODO[kat]: Once the kk/trie branch is merged, remove this and import the library
 class Trie:
-    def __init__(self):
+    def __init__(self, words=[]):
         self.root = TrieNode()
+        for word in words:
+            self.add_word(word)
 
     def add_word(self, word):
         node = self.root
@@ -40,9 +42,7 @@ class Trie:
                     self._append_sentences(s[:i+1], suffixes, idx, idx + i + 1)
 
 def word_break(s, word_dict):
-    t = Trie()
-    for word in word_dict:
-        t.add_word(word)
+    t = Trie(word_dict)
 
     sentences = {}
     t.get_sentences(sentences, s, 0)
