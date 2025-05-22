@@ -29,14 +29,11 @@ class UnionFind:
 
 def redundant_connection(edges):
     uf = union_find.UnionFind(len(edges))
-    redundant_edge = []
-    for a, b in edges:
-        if uf.find(a) == uf.find(b):
-            redundant_edge = [a, b]
-        else:
-            uf.union(a, b)
-
-    return redundant_edge
+    for x, y in edges:
+        if uf.find(x) == uf.find(y):
+            return [x, y]
+        uf.union(x, y)
+    return []
 
 # TODO[kat]: Use union find that's implemented in lib
 class World:
