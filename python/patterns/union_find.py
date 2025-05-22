@@ -30,7 +30,7 @@ def last_day_to_cross(rows, cols, water_cells):
                 uf.union(idx, n_idx) 
         
         for top_idx in range(1, cols+1):
-            if uf.find(top_idx) == uf.find(land_idx):
+            if uf.parent[top_idx] != 0 and uf.find(top_idx) == uf.find(land_idx):
                 return rows*cols - d - 1
             
     return -1
