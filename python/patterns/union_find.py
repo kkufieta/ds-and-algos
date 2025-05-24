@@ -8,10 +8,13 @@ def redundant_connection(edges):
         uf.union(x, y)
     return []
 
+# Approach: Start with all cells being water, then going backwards in time
+# uncover land and check if there's a connection of land from the top to the 
+# bottom of the matrix at each step.
 def last_day_to_cross(rows, cols, water_cells):
     land_idx = rows*cols + 2
-    uf = UnionFind(land_idx)
-    uf.parent = [0] * land_idx + [land_idx]
+    uf = UnionFind(land_idx, zeroes=True)
+    uf.set(-1, land_idx)
 
     get_idx = lambda r, c: (r-1)*cols + c
     is_bottom = lambda idx: idx > (rows-1)*cols
@@ -21,16 +24,16 @@ def last_day_to_cross(rows, cols, water_cells):
 
     for d, rc in enumerate(water_cells[::-1]):
         idx = get_idx(*rc)
-        uf.parent[idx] = idx
+        uf.set(idx, idx)
         if is_bottom(idx):
             uf.union(idx, land_idx)
 
         for n_idx in cardinal_idx(*rc):
-            if uf.parent[n_idx] != 0:
+            if uf.get(n_idx) != 0:
                 uf.union(idx, n_idx) 
         
         for top_idx in range(1, cols+1):
-            if uf.parent[top_idx] != 0 and uf.find(top_idx) == uf.find(land_idx):
+            if uf.get(top_idx) != 0 and uf.find(top_idx) == uf.find(land_idx):
                 return rows*cols - d - 1
             
     return -1

@@ -42,5 +42,7 @@ def test_UnionFind(n, fnc_calls, expected_return, expected_parent, expected_rank
         elif fnc_call == "find":
             assert uf.find(args) == expected_return[i]
         assert uf.parent == expected_parent[i]
-        assert uf.rank == expected_rank[i] 
+        assert uf.rank == expected_rank[i]
+        for idx in range(n):
+            assert uf.get(idx) == expected_parent[i][idx]
         

@@ -1,6 +1,10 @@
 class UnionFind:
-    def __init__(self, n=0):
-        self.parent = [v for v in range(n+1)]
+    def __init__(self, n=0, zeroes=False):
+        if zeroes:
+            self.parent = [0] * (n+1)
+        else:
+            self.parent = [v for v in range(n+1)]
+
         self.rank = [1] * (n+1)
 
     def find(self, x):
@@ -22,3 +26,10 @@ class UnionFind:
         else:
             self.parent[x] = y
             self.rank[y] += self.rank[x]
+
+    def set(self, idx, val):
+        self.parent[idx] = val
+
+    def get(self, idx):
+        return self.parent[idx]
+        
