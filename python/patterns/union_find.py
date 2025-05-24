@@ -37,3 +37,38 @@ def last_day_to_cross(rows, cols, water_cells):
                 return rows*cols - d - 1
             
     return -1
+
+# Approach: Check at each step if there's a connected component of
+# water from the left to the right of the matrix.
+def last_day_to_cross_using_edges(rows, cols, water_cells):
+    n = rows * cols + 2
+    left_idx, right_idx = n-1, n
+    uf = UnionFind(n, zeroes=True)
+    uf.set(-2, left_idx)
+    uf.set(-1, right_idx)
+
+    get_idx = lambda r, c: (r-1)*cols + c
+    valid_rc = lambda r, c: r >= 1 and c >= 1 and r <= rows and c <= cols
+    neighbors = lambda r, c: [(r-1,c-1), (r-1,c), (r-1,c+1), (r,c-1), (r,c+1), (r+1,c-1), (r+1,c), (r+1,c+1)] 
+    valid_neighbors = lambda r, c: [get_idx(*rc) for rc in neighbors(r, c) if valid_rc(*rc)]
+    left = lambda idx: idx%cols == 1
+    right = lambda idx: idx%cols == 0
+
+    for day, rc in enumerate(water_cells):
+        idx = get_idx(*rc)
+        uf.set(idx, idx)
+        if left(idx):
+            uf.union(idx, left_idx)
+        elif right(idx):
+            uf.union(idx, right_idx)
+        else:
+            uf.union(idx, idx)
+
+        for n_idx in valid_neighbors(*rc):
+            if uf.get(n_idx) != 0:
+                uf.union(idx, n_idx)
+        
+        if uf.find(left_idx) == uf.find(right_idx):
+            return day
+        
+    return -1
