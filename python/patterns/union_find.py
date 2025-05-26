@@ -72,3 +72,52 @@ def last_day_to_cross_using_edges(rows, cols, water_cells):
             return day
         
     return -1
+
+
+def last_day_to_cross_using_bfs_binary_search(rows, cols, water_cells):
+    m = [[0] * (cols+1) for _ in range(rows+1)]
+
+    neighbors = lambda r, c: [(r+1, c), (r, c-1), (r, c+1)]
+    valid_rc = lambda r, c: r >= 1 and c >= 1 and r <= rows and c <= cols
+    valid_neighbors = lambda r, c: [rc for rc in neighbors(r, c) if valid_rc(*rc) and m[rc[0]][rc[1]] == 0]
+
+    def time_travel(today, t_mid):
+        if today < t_mid:
+            for r, c in water_cells[today:t_mid+1]:
+                m[r][c] = 1
+        elif today > t_mid:
+            for r, c in water_cells[today:t_mid:-1]:
+                m[r][c] = 0
+
+    def crossing_is_possible():
+        cells = [(1, c) for c in range(1, cols+1) if m[1][c] == 0]
+        while cells:
+            r, c = cells.pop()
+            if r == rows:
+                return True
+            m[r][c] = 2
+            cells.extend(valid_neighbors(r, c))
+        return False
+    
+    def reset_matrix():
+        for r in range(1, rows+1):
+            for c in range(1, cols+1):
+                if m[r][c] == 2:
+                    m[r][c] = 0
+    
+    today, lo, hi = 0, 0, len(water_cells)-1
+    crossing_possible_day, crossing_impossible_day = lo, hi
+    while lo <= hi:
+        t_mid = (lo + hi)//2
+        time_travel(today, t_mid)
+        today = t_mid
+        if crossing_is_possible():
+            crossing_possible_day = t_mid
+            lo = t_mid + 1
+        else:
+            crossing_impossible_day = t_mid
+            hi = t_mid - 1
+        if crossing_possible_day + 1 == crossing_impossible_day:
+            return crossing_possible_day + 1
+        reset_matrix()
+    return crossing_possible_day + 1

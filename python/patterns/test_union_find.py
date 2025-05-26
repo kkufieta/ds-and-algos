@@ -12,8 +12,8 @@ from union_find import *
 def test_redundant_connection(edges, expected):
     assert redundant_connection(edges) == expected
 
-    
-last_day_test_cases = [(2, 2, [[1, 1], [1, 2], [2, 1], [2, 2]], 1), 
+last_day_test_cases = [
+    (2, 2, [[1, 1], [1, 2], [2, 1], [2, 2]], 1), 
     (2, 2, [[1, 1], [2, 1], [1, 2], [2, 2]], 2), 
     (5, 5, [[1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [1, 2], [2, 2], [3, 2], [4, 2], [5, 2], [1, 3], [2, 3], [3, 3], [4, 3], [5, 3], [1, 4], [2, 4], [3, 4], [4, 4], [5, 4], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5]], 20), 
     (3, 3, [[1, 2], [2, 1], [3, 3], [2, 2], [1, 1], [1, 3], [2, 3], [3, 2], [3, 1]], 3), 
@@ -32,3 +32,7 @@ def test_last_day_to_cross(rows, cols, water_cells, last_day):
 @pytest.mark.parametrize("rows, cols, water_cells, last_day", last_day_test_cases)
 def test_last_day_to_cross_using_edges(rows, cols, water_cells, last_day):
     assert last_day_to_cross_using_edges(rows, cols, water_cells) == last_day
+
+@pytest.mark.parametrize("rows, cols, water_cells, last_day", last_day_test_cases)
+def test_last_day_to_cross_using_bfs_binary_search(rows, cols, water_cells, last_day):
+    assert last_day_to_cross_using_bfs_binary_search(rows, cols, water_cells) == last_day
