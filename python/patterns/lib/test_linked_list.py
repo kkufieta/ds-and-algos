@@ -1,17 +1,20 @@
 import pytest
 from lib import linked_list as ll
 
-@pytest.mark.parametrize("nums_list", [
-    [1, 2, 3, 4, 5],
-    [1,-2,3,4,-5,4,3,-2,1],
-    [-1,-5,-3,-7,-8,-6,-2],
-    [-1,2,-3,4],
-    [1,-1,-2,3,-4,5],
-    [28,21,14,7],
-    [0],
-    [],
-])
 
+@pytest.mark.parametrize(
+    "nums_list",
+    [
+        [1, 2, 3, 4, 5],
+        [1, -2, 3, 4, -5, 4, 3, -2, 1],
+        [-1, -5, -3, -7, -8, -6, -2],
+        [-1, 2, -3, 4],
+        [1, -1, -2, 3, -4, 5],
+        [28, 21, 14, 7],
+        [0],
+        [],
+    ],
+)
 class TestLinkedList:
     def test_linked_list(self, nums_list):
         linked_list = ll.LinkedList(nums_list)
@@ -30,6 +33,3 @@ def test_linked_list_node():
     assert node_2 != None
     assert node_2.data == val_2
     assert node_2.next == node_1
-
-
-

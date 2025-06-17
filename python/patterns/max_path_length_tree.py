@@ -8,6 +8,7 @@ def get_max_path_length_recursive(root):
 
     return m
 
+
 def get_m_recursive(node, m):
     l, r = 0, 0
     if node.left:
