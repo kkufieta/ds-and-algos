@@ -24,12 +24,12 @@ class TestLinkedList:
 def test_linked_list_node():
     val_1 = 5
     node_1 = ll.LinkedListNode(val_1)
-    assert node_1 != None
+    assert node_1 is not None
     assert node_1.data == val_1
-    assert node_1.next == None
+    assert node_1.next is None
 
     val_2 = -1
     node_2 = ll.LinkedListNode(val_2, node_1)
-    assert node_2 != None
+    assert node_2 is not None
     assert node_2.data == val_2
     assert node_2.next == node_1

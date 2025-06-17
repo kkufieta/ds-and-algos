@@ -27,14 +27,14 @@ def get_max_path_length_sequential(root):
     nodes = [root]
     while nodes:
         node = nodes[-1]
-        if l == None:
+        if l is None:
             if node.left:
                 nodes.append(node.left)
                 if l_queue:
                     l_queue.append(None)
             else:
                 l = 0
-        elif r == None:
+        elif r is None:
             if node.right:
                 nodes.append(node.right)
                 l_queue.append(l)
@@ -46,7 +46,7 @@ def get_max_path_length_sequential(root):
             local_max = max(l, r) + 1
             m = max(m, l + r)
             l, r = None, None
-            if not l_queue or l_queue[-1] == None:
+            if not l_queue or l_queue[-1] is None:
                 l = local_max
             else:
                 l = l_queue[-1]
