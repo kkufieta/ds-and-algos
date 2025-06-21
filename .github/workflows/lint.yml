@@ -1,0 +1,44 @@
+name: Lint and Format
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-and-format-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x' # Use '3.x' for the latest stable, or a specific version like '3.10'
+
+    - name: Cache Python dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install Ruff
+      run: |
+        python -m pip install --upgrade pip
+        pip install ruff
+
+    - name: Run Ruff Check
+      run: ruff check .
+      # This step will fail if any linting errors are found.
+
+    - name: Run Ruff Format Check
+      run: ruff format --check .
+      # This step will fail if any files are not formatted according to Ruff's rules.
+      # Developers should run 'ruff format .' locally to fix these.
