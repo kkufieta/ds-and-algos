@@ -10,4 +10,3 @@ def reverse_linked_list(linked_list):
         current = next
 
     linked_list.head = prev
-
