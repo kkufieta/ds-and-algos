@@ -1,10 +1,12 @@
 from collections import defaultdict
 
+
 # TODO[kat]: Once the kk/trie branch is merged, remove this and import the library
 class TrieNode:
     def __init__(self):
         self.children = {}
         self.is_word = False
+
 
 # TODO[kat]: Once the kk/trie branch is merged, remove this and import the library
 class Trie:
@@ -21,6 +23,7 @@ class Trie:
             node = node.children[ch]
         node.is_word = True
 
+
 def word_break(s, word_dict):
     t = Trie(word_dict)
     sentences = defaultdict(list)
@@ -36,12 +39,12 @@ def word_break(s, word_dict):
                 if i == len(s) - 1:
                     sentences[idx].append(s[idx:])
                     return
-                find_words(i+1)
-                if i+1 in sentences:
-                    prefix = s[idx:i+1] + " "
-                    for postfix in sentences[i+1]:
+                find_words(i + 1)
+                if i + 1 in sentences:
+                    prefix = s[idx : i + 1] + " "
+                    for postfix in sentences[i + 1]:
                         sentences[idx].append(prefix + postfix)
-                    del sentences[i+1]
+                    del sentences[i + 1]
             node = node.children[s[i]]
 
     find_words(0)

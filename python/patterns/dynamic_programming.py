@@ -1,15 +1,17 @@
 def knapsack_0_1(capacity, weights, values):
     vals = [0] * (capacity + 1)
     for w, v in zip(weights, values):
-        for c in range(capacity, w-1, -1):
-            vals[c] = max(v + vals[c-w], vals[c])
+        for c in range(capacity, w - 1, -1):
+            vals[c] = max(v + vals[c - w], vals[c])
     return vals[-1]
+
 
 def fibonacci_recursive_naive(num):
     if num <= 1:
         return num
     else:
-        return fibonacci_recursive_naive(num-1) + fibonacci_recursive_naive(num-2)
+        return fibonacci_recursive_naive(num - 1) + fibonacci_recursive_naive(num - 2)
+
 
 def fibonacci_sequential(num):
     if num <= 1:
@@ -21,11 +23,10 @@ def fibonacci_sequential(num):
         n2 = tmp
     return n2
 
+
 def fibonacci_dp_top_down_recursive(num):
-    fib_nums = {
-        0: 0,
-        1: 1
-    }
+    fib_nums = {0: 0, 1: 1}
+
     def fibonacci(n):
         nonlocal fib_nums
         if n in fib_nums:
@@ -34,4 +35,3 @@ def fibonacci_dp_top_down_recursive(num):
         return fib_nums[n]
 
     return fibonacci(num)
-

@@ -1,12 +1,13 @@
 import queue
 
+
 class BinaryTreeNode:
     def __init__(self, data=None, left=None, right=None):
         self.data = data
         self.left = left
         self.right = right
 
-    
+
 class BinaryTree:
     def __init__(self):
         self.root = None
@@ -33,7 +34,6 @@ class BinaryTree:
                 node.right = BinaryTreeNode(bt_list[i])
                 q.put(node.right)
 
-
     def to_list(self):
         bt_list = []
         if not self.root:
@@ -54,4 +54,3 @@ class BinaryTree:
                 node_queue.put(node.right)
 
         return bt_list
-        
