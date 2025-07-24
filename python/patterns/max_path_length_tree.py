@@ -51,7 +51,7 @@ def get_max_path_length_sequential(root):
             else:
                 left = l_queue[-1]
                 right = local_max
+
             if l_queue:
                 l_queue.pop()
-
     return m
