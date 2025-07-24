@@ -1,6 +1,6 @@
 import pytest
 import random
-from bitwise_fun import find_difference, swap_without_extra_space
+from bitwise_fun import swap_without_extra_space, find_difference
 
 
 @pytest.mark.parametrize(

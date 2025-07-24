@@ -10,48 +10,48 @@ def get_max_path_length_recursive(root):
 
 
 def get_m_recursive(node, m):
-    le, ri = 0, 0
+    left, right = 0, 0
     if node.left:
-        le, m = get_m_recursive(node.left, m)
+        left, m = get_m_recursive(node.left, m)
     if node.right:
-        ri, m = get_m_recursive(node.right, m)
+        right, m = get_m_recursive(node.right, m)
 
-    return max(le, ri) + 1, max(m, le + ri)
+    return max(left, right) + 1, max(m, left + right)
 
 
 def get_max_path_length_sequential(root):
     if not root:
         return 0
 
-    l_queue, le, ri, m = [], None, None, 0
+    l_queue, left, right, m = [], None, None, 0
     nodes = [root]
     while nodes:
         node = nodes[-1]
-        if le is None:
+        if left is None:
             if node.left:
                 nodes.append(node.left)
                 if l_queue:
                     l_queue.append(None)
             else:
-                le = 0
-        elif ri is None:
+                left = 0
+        elif right is None:
             if node.right:
                 nodes.append(node.right)
-                l_queue.append(le)
-                le = None
+                l_queue.append(left)
+                left = None
             else:
-                ri = 0
+                right = 0
         else:
             nodes.pop()
-            local_max = max(le, ri) + 1
-            m = max(m, le + ri)
-            le, ri = None, None
+            local_max = max(left, right) + 1
+            m = max(m, left + right)
+            left, right = None, None
             if not l_queue or l_queue[-1] is None:
-                le = local_max
+                left = local_max
             else:
-                le = l_queue[-1]
-                ri = local_max
+                left = l_queue[-1]
+                right = local_max
+
             if l_queue:
                 l_queue.pop()
-
     return m
