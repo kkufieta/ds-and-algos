@@ -1,5 +1,5 @@
 import pytest
-from dp_word_break import *
+from dp_word_break import word_break
 
 
 @pytest.mark.parametrize(

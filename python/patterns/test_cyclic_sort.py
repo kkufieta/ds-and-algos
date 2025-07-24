@@ -1,5 +1,5 @@
 import pytest
-from cyclic_sort import *
+from cyclic_sort import find_missing_number
 
 
 @pytest.mark.parametrize(

@@ -1,5 +1,10 @@
 import pytest
-from dynamic_programming import *
+from dynamic_programming import (
+    fibonacci_dp_top_down_recursive,
+    fibonacci_recursive_naive,
+    fibonacci_sequential,
+    knapsack_0_1,
+)
 
 
 @pytest.mark.parametrize(
